@@ -46,7 +46,7 @@ const Map = () => {
     style={{ height: "95vh", width: "95vw",margin:'0 auto' }}
   >
     <TileLayer
-      url={`https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiZGF2aWQxNTEiLCJhIjoiY2twd2gwbnBhMHc0dzJ2bnpkbHp3aDk5ZSJ9.j5_kswn62bIywgIArkg1jA`}
+      url={`http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png`}
       attribution='Map data &copy; <a href=&quot;https://www.openstreetmap.org/&quot;>OpenStreetMap</a> contributors, <a href=&quot;https://creativecommons.org/licenses/by-sa/2.0/&quot;>CC-BY-SA</a>, Imagery &copy; <a href=&quot;https://www.mapbox.com/&quot;>Mapbox</a>'
     />
     {/* <Marker position={[loc.x,loc.y]}></Marker> */}
