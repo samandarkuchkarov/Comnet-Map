@@ -57,7 +57,7 @@ const FerganaMap = () => {
         }
         return(
       <Marker key={i} position={[e.A, parseFloat(e.B)]}  animate={true}>
-        <Popup>{e.F}  {e.C}</Popup>
+        <Popup> {e.C}</Popup>
       </Marker>
     )})}
    </MarkerClusterGroup>
