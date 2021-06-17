@@ -3,7 +3,7 @@ import React from "react";
 
 export default function Home() {
   const DynamicComponentWithNoSSR = dynamic(
-    () => import('../components/map.js'),
+    () => import('../components/ferganaMap'),
     { ssr: false }
   )
 

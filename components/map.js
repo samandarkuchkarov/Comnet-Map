@@ -3,7 +3,7 @@ import 'leaflet/dist/leaflet.css'
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css'
 import "leaflet-defaulticon-compatibility"
 import React from 'react'
-import data from './location.json'
+import data from '../location.json'
 import MarkerClusterGroup from 'react-leaflet-markercluster';
 
 const Map = () => {
@@ -43,7 +43,7 @@ const Map = () => {
     center={[41.2995, 69.2401]}
     scrollWheelZoom={true}
     zoom={13}
-    style={{ height: "95vh", width: "95vw",margin:'0 auto' }}
+    style={{ height: "100vh", width: "100vw",margin:'0 auto' }}
   >
     <TileLayer
       url={`http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png`}
