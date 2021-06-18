@@ -46,22 +46,25 @@ const SearchContainer = ({data,map}) =>{
             setResult(newData)
             }else if(value.length>=3){
             let newData = data.filter((item)=>{
-                return item.C.includes(value)
+                let newString = item.C.toLowerCase()
+                return newString.includes(value.toLowerCase())
             })
             setResult(newData)
             }
     },[value])
 
     const find = (item) =>{
-        map.setView([Number(item.A),Number(item.B)],16)
+        map.setView([Number(item.A),Number(item.B)],18)
         setValue(item.C)
     }
 
     return(
+    <div>
         <div className='searchBlock'>
             <div className='search'>
                 <Divider className={classes.divider} orientation="vertical" />
                 <InputBase
+                    spellCheck={false}
                     onChange={(e)=>{setValue(e.target.value)}}
                     value={value}
                     className={classes.input}
@@ -83,6 +86,10 @@ const SearchContainer = ({data,map}) =>{
             </div>
             </div>
         </div>
+        <div className='info'>
+           <p></p>     
+        </div>
+    </div>
     )
 }
 

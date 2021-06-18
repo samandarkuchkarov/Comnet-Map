@@ -47,3 +47,12 @@
     font-family: 'Courier New', Courier, monospace;
 
 }
+.info{
+    position: absolute;
+    width:calc(100vw - 380px);
+    right: 0;
+    height: 30px;
+    background-color: #f4f4f4;
+    bottom: 0;
+    z-index: 1111;
+}

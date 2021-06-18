@@ -11,6 +11,7 @@ const Map = () => {
 
   const [loc,setLoc] = React.useState({x:'41.2995',y:'69.2401'})
   const [map,setMap] = React.useState()
+
   React.useEffect(()=>{
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition);
@@ -41,10 +42,9 @@ const Map = () => {
     setMap(map)
     return null
   }
-  
   return (
       <div >
-        <SearchBlock  data={data} map={map}/>
+        <SearchBlock data={data} map={map}/>
         <MapContainer
         center={[41.2995,69.2401]}
         scrollWheelZoom={true}
@@ -62,8 +62,8 @@ const Map = () => {
                     return
                 }
                 return(
-              <Marker key={i} position={[e.A, parseFloat(e.B)]}  animate={true}>
-                <Popup>{e.C}</Popup>
+              <Marker  key={i} position={[e.A, parseFloat(e.B)]}  animate={true}>
+                <Popup >{e.C}</Popup>
               </Marker>
             )})}
           </MarkerClusterGroup>
