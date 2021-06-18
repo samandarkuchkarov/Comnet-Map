@@ -46,9 +46,9 @@ const Map = () => {
       <div >
         <SearchBlock  data={data} map={map}/>
         <MapContainer
-        center={[Number(loc.x), Number(loc.y)]}
+        center={[41.2995,69.2401]}
         scrollWheelZoom={true}
-        zoom={20}
+        zoom={12}
         style={{ height: "100vh", width: "100vw",margin:'0 auto' }}
         >
           <MyComponent/>
@@ -67,9 +67,6 @@ const Map = () => {
               </Marker>
             )})}
           </MarkerClusterGroup>
-          <Marker  position={[Number(loc.x), Number(loc.y)]}  animate={true}>
-                <Popup></Popup>
-          </Marker>
         </MapContainer>
   
       </div>
