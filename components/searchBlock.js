@@ -52,9 +52,16 @@ const SearchContainer = ({data,map,distanceM,type,setCordinate}) =>{
             })
             setResult(newData)
             }else if(value.length>=3){
+
             let newData = data.filter((item)=>{
-                let newString = item.C.toLowerCase()
-                return newString.includes(value.toLowerCase())
+                let newString = item.C.toLowerCase().replace(/ /g,'')
+                let words = value.split(' ')
+                let newWords = words.filter((elem)=>{
+                   return newString.includes(elem.toLowerCase().replace(/ /g,''))
+                })
+                return newWords.length===words.length
+                // let newString = item.C.toLowerCase()
+                // return newString.includes(value.toLowerCase().replace(/ /g,''))
             })
             setResult(newData)
             }
