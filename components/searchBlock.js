@@ -133,10 +133,10 @@ const SearchContainer = ({data,map,distanceM,type,setCordinate}) =>{
             </div>
         </div>
         <div className='info'>
-           <div  className='infoContent' style={{display:distanceM<500?'none':'flex'}}>
+           <div  className='infoContent' style={{display:distanceM<300?'none':'flex'}}>
            <p className='infoText'>Уточните возможность подключения у оператора, по номеру телефона <span style={{color:'#EC6A6A'}}>712058888</span> </p>
            </div>
-           <div style={{display:distanceM<500?'flex':'none'}} className='infoContent'>
+           <div style={{display:distanceM<300?'flex':'none'}} className='infoContent'>
                 <p className='infoText'>Ваш дом находится в зоне покрытия Comnet!</p>
                 <div className='button'><p>Оставить заявку</p></div>
            </div>     

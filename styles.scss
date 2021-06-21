@@ -1,5 +1,13 @@
 @import '~leaflet/dist/leaflet.css'; // sass
 @import '~react-leaflet-markercluster/dist/styles.min.css'; 
+
+@font-face {
+    font-family: "Office";
+    src: url("/Rubik-Medium.ttf");
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+  }
 .markercluster-map { height: 90vh; }
 *{
     margin: 0;
@@ -45,7 +53,7 @@
 }
 .resultext{
     font-size: 16px;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Office';
 
 }
 .info{
@@ -64,11 +72,13 @@
     display: flex;
     justify-content: space-around;
     width:calc(100vw - 380px);
+    align-items: center;
 }
 .infoText{
     margin-left: 30px;
     font-size: 24px;
-    font-family: 'sans-serif';
+    font-family: 'Office';
+  
 }
 .button{
     width: 280px;
@@ -82,7 +92,7 @@
 .button p {
     color: #fff;
     font-size: 24px;
-    font-family: sans-serif;
+    font-family: Office;
     font-weight: 700;
 }
 .burger{
