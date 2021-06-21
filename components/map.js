@@ -11,6 +11,7 @@ const Map = () => {
 
   const [loc,setLoc] = React.useState({x:'41.2995',y:'69.2401'})
   const [map,setMap] = React.useState()
+  const [distanceM,setDistance] = React.useState(10000)
 
   React.useEffect(()=>{
     if (navigator.geolocation) {
@@ -22,9 +23,10 @@ const Map = () => {
     let lat = position.coords.latitude;
     setLoc({x:lat,y:long})
     const closest = data.reduce((a,b)=>distance(lat,long,a) < distance(lat,long,b) ? a : b);
-    console.log(('The closest distance between you and coverage point  '+distanceInkm(lat,long,closest.A,closest.B)*1000)+'m')
+    let newDistance = distanceInkm(lat,long,closest.A,closest.B)*1000
+    setDistance(newDistance)
     console.log(closest,'closest coverage point')
-  }
+  } 
 
   function distance(lat,long,all) {
     return Math.sqrt(Math.pow(lat - all.A, 2) + Math.pow(long - Number(all.B), 2))
@@ -44,7 +46,7 @@ const Map = () => {
   }
   return (
       <div >
-        <SearchBlock data={data} map={map}/>
+        <SearchBlock type='tashkent'  distanceM={distanceM} data={data} map={map}/>
         <MapContainer
         center={[41.2995,69.2401]}
         scrollWheelZoom={true}
@@ -63,7 +65,7 @@ const Map = () => {
                 }
                 return(
               <Marker  key={i} position={[e.A, parseFloat(e.B)]}  animate={true}>
-                <Popup >{e.C}</Popup>
+                <Popup >{e.C} </Popup>
               </Marker>
             )})}
           </MarkerClusterGroup>

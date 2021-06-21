@@ -1,14 +1,21 @@
-import { MapContainer, TileLayer,Marker,Popup } from 'react-leaflet'
+import { MapContainer, TileLayer,Marker,Popup,useMap } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css'
 import "leaflet-defaulticon-compatibility"
 import React from 'react'
 import data from '../company.json'
 import MarkerClusterGroup from 'react-leaflet-markercluster';
+import SearchBlock from './searchBlock'
 
 const Map = () => {
 
-  const [loc,setLoc] = React.useState({x:'',y:''})
+  const [loc,setLoc] = React.useState({x:'41.2995',y:'69.2401'})
+  const [map,setMap] = React.useState()
+  const [cordinate,setCordinate] = React.useState({
+    x:'',
+    y:''
+  })
+  const [distanceM,setDistance] = React.useState(10000)
   React.useEffect(()=>{
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition);
@@ -19,12 +26,12 @@ const Map = () => {
     let lat = position.coords.latitude;
     setLoc({x:lat,y:long})
     const closest = data.reduce((a,b)=>distance(lat,long,a) < distance(lat,long,b) ? a : b);
-    console.log(('The closest distance between you and coverage point  '+distanceInkm(lat,long,closest.A,closest.B)*1000)+'m')
+    let newDistance = distanceInkm(lat,long,closest.A,closest.B)*1000
+    setDistance(newDistance)
     console.log(closest,'closest coverage point')
-  }
+  } 
 
   function distance(lat,long,all) {
-
     return Math.sqrt(Math.pow(lat - all.A, 2) + Math.pow(long - Number(all.B), 2))
   }
   function distanceInkm(lat1, lon1, lat2, lon2) {
@@ -32,36 +39,40 @@ const Map = () => {
     var c = Math.cos;
     var a = 0.5 - c((lat2 - lat1) * p)/2 + 
             c(lat1 * p) * c(lat2 * p) * 
-            (1 - c((lon2 - lon1) * p))/2;
-  
+            (1 - c((lon2 - lon1) * p))/2; 
     return 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
   }
-  
+  function MyComponent() {
+    const map = useMap()
+    setMap(map)
+    return null
+  }
   return (
       <div >
-              <MapContainer
-    center={[41.2995, 69.2401]}
-    scrollWheelZoom={true}
-    zoom={13}
-    style={{ height: "100vh", width: "100vw",margin:'0 auto' }}
-  >
-    <TileLayer
-      url={`http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png`}
-      attribution='Map data &copy; <a href=&quot;https://www.openstreetmap.org/&quot;>OpenStreetMap</a> contributors, <a href=&quot;https://creativecommons.org/licenses/by-sa/2.0/&quot;>CC-BY-SA</a>, Imagery &copy; <a href=&quot;https://www.mapbox.com/&quot;>Mapbox</a>'
-    />
-    {/* <Marker position={[loc.x,loc.y]}></Marker> */}
-   <MarkerClusterGroup>
-    {data.map((e,i)=>{
-        if(!e.A || e.A === 'a'){
-            return
-        }
-        return(
-      <Marker key={i} position={[e.A, parseFloat(e.B)]}  animate={true}>
-        <Popup>{e.C}</Popup>
-      </Marker>
-    )})}
-   </MarkerClusterGroup>
-  </MapContainer>
+        <SearchBlock type='company' setCordinate={setCordinate} distanceM={distanceM} data={data} map={map}/>
+        <MapContainer
+        center={[41.2995,69.2401]}
+        scrollWheelZoom={true}
+        zoom={12}
+        style={{ height: "100vh", width: "100vw",margin:'0 auto' }}
+        >
+          <MyComponent/>
+          <TileLayer
+            url={`http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png`}
+            attribution='Map data &copy; <a href=&quot;https://www.openstreetmap.org/&quot;>OpenStreetMap</a> contributors, <a href=&quot;https://creativecommons.org/licenses/by-sa/2.0/&quot;>CC-BY-SA</a>, Imagery &copy; <a href=&quot;https://www.mapbox.com/&quot;>Mapbox</a>'
+          />
+          <MarkerClusterGroup>
+            {data.map((e,i)=>{
+                if(!e.A || e.A === 'a'){
+                    return
+                }
+                return(
+              <Marker  key={i} position={[e.A, parseFloat(e.B)]}  animate={true}>
+                <Popup >{e.C} </Popup>
+              </Marker>
+            )})}
+          </MarkerClusterGroup>
+        </MapContainer>
   
       </div>
 
