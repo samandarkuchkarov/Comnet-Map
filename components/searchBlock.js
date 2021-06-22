@@ -118,6 +118,7 @@ const SearchContainer = ({data,map,distanceM,type,setCordinate}) =>{
                     {results.map((item)=>(
                         <div onClick={()=>{find(item)}}  className='resultItem' key={item.C}>
                            <p  className='resultext'>{item.C} {typeof item.D !== 'undefined'?item.D:''}</p> 
+                           <p  className='cordinate'>{item.A} {item.B}</p> 
                         </div>
                     ))}
             </div>

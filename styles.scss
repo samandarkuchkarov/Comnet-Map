@@ -43,13 +43,18 @@
     width: 280px;
     border-radius: 7px;
     background-color: #F4F4F4;
-    height: 34px;
+    height: 50px;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     margin: 7px auto;
     padding: 15px 15px 15px 26px;
     cursor: pointer;
 
+}
+.cordinate{
+    font-size: 14px;
+    color: gray;
+    margin-top: 5px;
 }
 .resultext{
     font-size: 16px;
@@ -70,6 +75,7 @@
 }
 .infoContent{
     display: flex;
+    flex-direction: row;
     justify-content: space-around;
     width:calc(100vw - 380px);
     align-items: center;
