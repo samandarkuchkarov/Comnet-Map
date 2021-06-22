@@ -36,11 +36,12 @@ const SearchContainer = ({data,map,distanceM,type,setCordinate}) =>{
     const classes = useStyles();
     const [results,setResult] = React.useState([])
     const [value,setValue] = React.useState('')
-    const RefX = React.useRef()
     const RefY = React.useRef()
     const findWithCordinate = ()=>{
-        const lat = Number(RefX.current.childNodes[0].value)
-        const long = Number(RefY.current.childNodes[0].value)
+        const text = RefY.current.childNodes[0].value
+        let numbers =text.split(',')
+        let lat =  parseFloat(numbers[0])
+        let long =  parseFloat(numbers[1])
         map.setView([lat,long],18)
 
     }
@@ -99,22 +100,9 @@ const SearchContainer = ({data,map,distanceM,type,setCordinate}) =>{
             <div className='coordinate'>
                 <Divider className={classes.divider} orientation="vertical" />
                 <InputBase
-                        type='number'
                         spellCheck={false}
                         className={classes.input}
-                        placeholder="X"
-                        ref={RefX}
-                        inputProps={{ 'aria-label': 'Введите Ваш адрес' }}
-                    />
-                <Divider className={classes.divider} orientation="vertical" />
-            </div>
-            <div className='coordinate'>
-                <Divider className={classes.divider} orientation="vertical" />
-                <InputBase
-                        type='number'
-                        spellCheck={false}
-                        className={classes.input}
-                        placeholder="Y"
+                        placeholder=""
                         ref={RefY}
                         inputProps={{ 'aria-label': 'Введите Ваш адрес' }}
                     />
