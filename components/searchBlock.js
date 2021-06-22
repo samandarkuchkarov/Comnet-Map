@@ -42,6 +42,9 @@ const SearchContainer = ({data,map,distanceM,type,setCordinate}) =>{
         let numbers =text.split(',')
         let lat =  parseFloat(numbers[0])
         let long =  parseFloat(numbers[1])
+        setResult(data.filter((item)=>{
+            return item.A === lat&& Number(item.B) === long
+        }))
         map.setView([lat,long],18)
 
     }
