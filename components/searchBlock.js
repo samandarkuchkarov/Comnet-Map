@@ -130,7 +130,7 @@ const SearchContainer = ({data,map,distanceM,type,setCordinate}) =>{
            </div>
            <div style={{display:distanceM<300?'flex':'none'}} className='infoContent'>
                 <p className='infoText'>Ваш дом находится в зоне покрытия Comnet!</p>
-                <div className='button'><p>Оставить заявку</p></div>
+                <a href='https://comnet.uz/Form'  className='button'><p>Оставить заявку</p></a>
            </div>     
         </div>
     </div>
