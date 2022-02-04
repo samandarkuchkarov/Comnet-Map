@@ -64,7 +64,7 @@ const Map = () => {
                     return
                 }
                 return(
-              <Marker  key={i} position={[e.A, parseFloat(e.B)]}  animate={true}>
+              <Marker  key={i} position={[e.B, parseFloat(e.C)]}  animate={true}>
                 <Popup >{e.C} </Popup>
               </Marker>
             )})}
