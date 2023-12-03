@@ -9,7 +9,7 @@ export default function Home() {
 
   return (
     <div style={{justifyContent:'center',alignItems:'center'}} className="container">
-   <DynamicComponentWithNoSSR />
+        <DynamicComponentWithNoSSR />
     </div>
   )
 }

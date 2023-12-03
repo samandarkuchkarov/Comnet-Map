@@ -12,8 +12,6 @@ export default function MyApp({ Component, pageProps }) {
             crossOrigin=""
           />
       </Head>
-      <body>
       <Component {...pageProps} />
-      </body>
     </>
 }
